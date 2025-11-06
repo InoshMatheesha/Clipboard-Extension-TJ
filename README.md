@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="banner.png" alt="banner" width="200" height="400">
+
 <img src="icon128.png" alt="ShadowByte SafePaste" width="128" height="128">
 
 <h1>ShadowByte SafePaste</h1>
