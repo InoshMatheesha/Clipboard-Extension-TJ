@@ -50,20 +50,6 @@ ShadowByte SafePaste is your personal clipboard security guardian. This extensio
 
 <table>
 <tr>
-<td width="50%" align="center">
-
-### 🌐 Chrome Web Store
-**Recommended Method**
-
-1. Visit Chrome Web Store
-2. Click "Add to Chrome"
-3. Confirm permissions
-4. Start using instantly!
-
-[![Install Now](https://img.shields.io/badge/Install-Chrome%20Web%20Store-blue?style=for-the-badge&logo=google-chrome)](chrome://extensions/)
-
-</td>
-<td width="50%" align="center">
 
 ### 💻 Developer Mode
 **For Testing & Development**
@@ -80,7 +66,7 @@ ShadowByte SafePaste is your personal clipboard security guardian. This extensio
 </tr>
 </table>
 
-<div align="center">
+<div align="">
 
 ### 📦 **Manual Installation Steps**
 
