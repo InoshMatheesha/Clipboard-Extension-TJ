@@ -1,7 +1,7 @@
 <div align="center">
  
 
-# <img src="https://github.com/InoshMatheesha/Clipboard-Extension-TJ/blob/main/icon48.png" /> FreebieGamesFinder
+# <img src="https://github.com/InoshMatheesha/Clipboard-Extension-TJ/blob/main/icon48.png" /><text-align: center> FreebieGamesFinder
 
 </div>
 <img src="https://github.com/InoshMatheesha/Clipboard-Extension-TJ/blob/main/banner.png" width="100%"/> 
