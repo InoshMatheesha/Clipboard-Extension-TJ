@@ -1,10 +1,9 @@
 <div align="center">
- 
 
-# <img src="https://github.com/InoshMatheesha/Clipboard-Extension-TJ/blob/main/icon48.png" /><text-align: center> FreebieGamesFinder
+# FreebieGamesFinder
 
 </div>
-<img src="https://github.com/InoshMatheesha/Clipboard-Extension-TJ/blob/main/banner.png" width="100%"/> 
+<img src="https://github.com/InoshMatheesha/Clipboard-Extension-TJ/blob/main/icon128.png" width="100%"/> 
 
 > Discover 500+ free-to-play games instantly. Real-time updates from FreeToGame API.
 
