@@ -94,7 +94,7 @@ MIT License - Free to use and modify
 <br>
 
 ---
-
+```
 ## ⚠️ EDUCATIONAL DISCLOSURE
 
 **This repository is a security-research and educational demonstration.**
@@ -138,5 +138,5 @@ Key permissions to scrutinize
 - `tabs` — access to browser tabs
 
 Stay cautious: always review extension source code and permissions before installing. Use responsibly.
-
+```
 
