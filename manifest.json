@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Steam Free Games Finder",
-  "version": "1.0",
-  "description": "Finds free games on Steam using SteamDB API: discover free-to-play titles and limited-time free promotions.",
+  "name": "Free Games Finder - Steam & Epic",
+  "version": "1.2.0",
+  "description": "Find and discover free-to-play games on Steam, Epic Games, and more. Never miss a free game again!",
   "permissions": [
     "cookies",
     "tabs",

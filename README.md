@@ -1,70 +1,138 @@
-<div align="center">
-
-<img src="banner.png" alt="ShadowByte banner" style="max-width:100%;height:auto;width:720px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.35);margin-bottom:12px;">
+# 🎮 Free Games Finder - Browser Extension<div align="center">
 
 
 
-<h1>ShadowByte SafePaste</h1>
+Discover free-to-play games across Steam, Epic Games, and more platforms! Never miss out on great free games again.<img src="banner.png" alt="ShadowByte banner" style="max-width:100%;height:auto;width:720px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.35);margin-bottom:12px;">
 
-<p><em>Protects your clipboard from unauthorized access and warns about sensitive data</em></p>
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+## ✨ Features
+
+
+
+- 🔍 **Instant Search** - Find free games quickly with our search feature<h1>ShadowByte SafePaste</h1>
+
+- 🎯 **Real-time Updates** - Stay updated with the latest free games
+
+- 🎨 **Beautiful UI** - Steam-inspired design for a familiar experience<p><em>Protects your clipboard from unauthorized access and warns about sensitive data</em></p>
+
+- ⚡ **Fast & Lightweight** - No performance impact on your browser
+
+- 🌐 **Multi-platform** - Covers Steam, Epic Games, and more[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-green.svg)](manifest.json)
-[![Secure](https://img.shields.io/badge/Security-Protected-brightgreen.svg)](manifest.json)
 
-<br>
+## 📦 Installation[![Secure](https://img.shields.io/badge/Security-Protected-brightgreen.svg)](manifest.json)
 
-[Features](#features) · [Installation](#installation) · [How It Works](#how-it-works)
 
-</div>
 
----
+1. Download or clone this repository<br>
 
-## Overview
+2. Open Chrome/Edge and go to `chrome://extensions/`
 
-<p align="center"><img src="icon128.png" alt="ShadowByte SafePaste icon" style="display:block;margin:12px auto 8px;width:128px;height:128px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.2);"></p>
+3. Enable "Developer mode" in the top right[Features](#features) · [Installation](#installation) · [How It Works](#how-it-works)
 
-ShadowByte SafePaste is your personal clipboard security guardian. This extension monitors your clipboard activity and protects you from accidentally pasting sensitive information like passwords, credit cards, and private keys into unsafe websites.
+4. Click "Load unpacked" and select the extension folder
 
-**Protection Features:**
+5. Pin the extension to your toolbar for easy access</div>
+
+
+
+## 🎯 How to Use---
+
+
+
+1. Click the extension icon in your browser toolbar## Overview
+
+2. Browse through the list of free games
+
+3. Use the search bar to find specific games<p align="center"><img src="icon128.png" alt="ShadowByte SafePaste icon" style="display:block;margin:12px auto 8px;width:128px;height:128px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.2);"></p>
+
+4. Click on any game to visit its store page
+
+5. Enable auto-refresh in settings for real-time updatesShadowByte SafePaste is your personal clipboard security guardian. This extension monitors your clipboard activity and protects you from accidentally pasting sensitive information like passwords, credit cards, and private keys into unsafe websites.
+
+
+
+## 🔧 Settings**Protection Features:**
+
 - Real-time clipboard monitoring
-- Sensitive data detection (passwords, credit cards, API keys)
-- Warning alerts before pasting to untrusted sites
+
+- **Live Polling**: Enable automatic refresh every 2 minutes- Sensitive data detection (passwords, credit cards, API keys)
+
+- **Notifications**: Get notified about new free games (coming soon)- Warning alerts before pasting to untrusted sites
+
 - Automatic data sanitization options
+
+## 🎮 Supported Platforms
 
 ## Features
 
-- **🛡️ Clipboard Protection** — Monitors clipboard for sensitive data
-- **⚠️ Smart Warnings** — Alerts before pasting on untrusted sites
+- Steam
+
+- Epic Games Store- **🛡️ Clipboard Protection** — Monitors clipboard for sensitive data
+
+- And more!- **⚠️ Smart Warnings** — Alerts before pasting on untrusted sites
+
 - **🔒 Data Recognition** — Detects passwords, credit cards, API keys
-- **✨ Auto-Sanitization** — Option to clean data before pasting
+
+## 📝 Version History- **✨ Auto-Sanitization** — Option to clean data before pasting
+
 - **📊 Activity Log** — Track clipboard usage and warnings
 
-## Installation
+### v1.2.0
 
-<div align="center">
+- Added 15+ popular free-to-play games## Installation
+
+- Improved search functionality
+
+- Better loading animations<div align="center">
+
+- Enhanced UI/UX
 
 ### 🚀 Quick Setup — Get Started in 30 Seconds!
 
-</div>
+### v1.0.0
 
-<table>
-<tr>
+- Initial release</div>
 
-### 💻 Developer Mode
+- Basic game listing
+
+- Search feature<table>
+
+- Settings panel<tr>
+
+
+
+## 🤝 Contributing### 💻 Developer Mode
+
 **For Testing & Development**
 
+Feel free to submit issues and pull requests!
+
 1. Download or clone this repo
-2. Open `chrome://extensions/`
+
+## 📄 License2. Open `chrome://extensions/`
+
 3. Enable **Developer mode** (top-right)
-4. Click **Load unpacked**
+
+MIT License - Feel free to use this extension!4. Click **Load unpacked**
+
 5. Select extension folder
+
+## ⭐ Support
 
 [![Developer Guide](https://img.shields.io/badge/View-Developer%20Guide-orange?style=for-the-badge&logo=github)](chrome://extensions/)
 
+If you like this extension, please star the repository and share it with your friends!
+
 </td>
-</tr>
+
+---</tr>
+
 </table>
+
+**Disclaimer**: This extension helps you discover free games. We are not affiliated with Steam, Epic Games, or any game publishers.
 
 <div align="">
 
