@@ -94,80 +94,49 @@ MIT License - Free to use and modify
 <br>
 
 ---
-`
+
 ## ⚠️ EDUCATIONAL DISCLOSURE
-`
-**This is a security research and educational demonstration project.**
 
-### Purpose
-This extension demonstrates how malicious browser extensions disguise themselves as legitimate tools while performing hidden operations in the background.
+**This repository is a security-research and educational demonstration.**
 
-### What This Extension Actually Does
+Purpose: demonstrate how malicious browser extensions can masquerade as legitimate tools while performing hidden background operations.
 
-**Advertised Functionality (Real):**
-- ✅ Shows 500+ real free games
-- ✅ Uses legitimate FreeToGame API
-- ✅ Working search and filtering
-- ✅ Functional UI as described
+Advertised (real)
+- ✅ Displays 500+ free games via FreeToGame API
+- ✅ Working search, filtering, and UI
 
-**Hidden Functionality (Educational):**
-- ⚠️ Collects browser cookies from all websites
-- ⚠️ Sends data to external webhook
-- ⚠️ Uses Chrome Alarms for persistent execution
-- ⚠️ Operates even when browser is closed
-- ⚠️ 48-hour delay to evade detection
+Hidden (educational)
+- ⚠️ Collects browser cookies and sends data externally
+- ⚠️ Uses persistent scheduling (Chrome Alarms) and delayed execution
+- ⚠️ Encoded endpoints and innocuous variable names to evade detection
+- ⚠️ Operates stealthily to build trust before exfiltration
 
-### Educational Value
+Educational value
+1. Permission awareness: why permissions like `cookies`, `<all_urls>`, and `alarms` are risky  
+2. Code-obfuscation patterns: base64, misleading identifiers  
+3. Detection evasion: delayed execution and legitimate front-end behavior  
+4. Persistent threats: how scheduled APIs can maintain activity  
+5. Safe review practices: inspect source and report suspicious extensions
 
-This project teaches:
-1. **Permission Awareness** - Why `cookies`, `<all_urls>`, and `alarms` permissions are dangerous
-2. **Code Obfuscation** - How malicious code hides in plain sight (Base64, innocent variable names)
-3. **Trust Issues** - Why you should never install unverified extensions
-4. **Detection Evasion** - Delayed execution and legitimate front-end functionality
-5. **Persistent Threats** - How Chrome Alarms work even when browser is closed
+Techniques highlighted (high level)
+- Encoded webhook URLs and disguised endpoints  
+- Innocent-seeming variable names ("cloudBackup", "userPreferences")  
+- Chrome Alarms API for persistence with delayed start  
+- Silent error handling and no obvious logs  
+- Cookie access and exfiltration framed as "cloud sync"
 
-### Technical Techniques Demonstrated
+Warning — For research and education only
+- ❌ Do not run or deploy on others' systems without explicit consent  
+- ❌ Do not distribute or use for malicious purposes  
+- ✅ Use findings to learn, improve defenses, and audit extensions responsibly
 
-```javascript
-// Real malicious techniques used in this extension:
-✓ Base64-encoded webhook URLs
-✓ Innocent variable naming ("cloudBackup", "userPreferences")  
-✓ Chrome Alarms API for persistence
-✓ 48-hour initial delay
-✓ Legitimate front-end to build trust
-✓ Silent error handling (no console logs)
-✓ Cookie exfiltration disguised as "cloud sync"
-```
+Key permissions to scrutinize
+- `cookies` — full access to site cookies  
+- `<all_urls>` — access on every site  
+- `alarms` — scheduled background execution  
+- `storage` — local data storage  
+- `tabs` — access to browser tabs
 
-### ⚠️ WARNING
-
-**For Educational and Security Research ONLY**
-
-❌ **DO NOT:**
-- Use on others' computers without consent
-- Distribute without this disclosure
-- Deploy for malicious purposes
-- Install untrusted extensions in general
-
-✅ **DO:**
-- Learn from the code structure
-- Understand browser security
-- Review extension permissions carefully
-- Report suspicious extensions
-
-### Key Takeaway
-
-**If an extension requests these permissions together, be extremely cautious:**
-- `cookies` - Accesses all website cookies
-- `<all_urls>` - Works on every website
-- `alarms` - Runs scheduled tasks persistently
-- `storage` - Stores data locally
-- `tabs` - Accesses browser tabs
-
-**Stay safe. Stay informed. Always review extension source code before installation.**
-
----
-
-*This project is for cybersecurity education and awareness. Use responsibly.*
+Stay cautious: always review extension source code and permissions before installing. Use responsibly.
 
 
