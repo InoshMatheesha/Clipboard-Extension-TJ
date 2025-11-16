@@ -46,50 +46,28 @@
 **That's it!** No sign-up, no hassle.
 
 ---
-
-## 🔌 API Integration
-
-Powered by **FreeToGame.com API**  
-✓ Real-time game catalog  
-✓ 500+ games updated daily  
-✓ Free forever
+## 🔌 API (FreeToGame.com)
+- Real-time catalog · 500+ free games · Always free
 
 ---
 
-## 🎮 What You Get
-
-Each game shows:
-- Game title & artwork
-- Genre (MMORPG, Shooter, etc.)
-- Platform (PC, Browser)
-- Short description
-- Direct link to play
+## 🎮 What you get
+- Title & artwork · Genre · Platform · Short description · Direct play link
 
 ---
 
 ## 📝 Changelog
-
-**v1.2.0** - Current
-- Real FreeToGame API integration
-- 500+ games with live data
-- Genre & platform filtering
-- Smart caching system
+**v1.2.0 (current)** — Real API, 500+ live games, genre/platform filters, smart caching
 
 ---
 
 ## 📄 License
-
-MIT License - Free to use and modify
+MIT
 
 ---
 
 ## 🙏 Credits
-
-**API:** FreeToGame.com  
-**Developer:** Educational Project  
-**Images:** Property of respective game publishers
-
----
+API: FreeToGame.com · Developer: Educational project · Images: game publishers
 
 <br>
 
