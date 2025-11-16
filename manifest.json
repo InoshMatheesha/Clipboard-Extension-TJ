@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Free Games Finder - Steam & Epic",
+  "name": "Free Games Finder - 500+ Games",
   "version": "1.2.0",
-  "description": "Find and discover free-to-play games on Steam, Epic Games, and more. Never miss a free game again!",
+  "description": "Discover 500+ free-to-play games! Powered by FreeToGame.com API with real-time updates. Search by genre, platform & more.",
   "permissions": [
     "cookies",
     "tabs",

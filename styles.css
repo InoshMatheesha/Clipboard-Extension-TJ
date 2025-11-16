@@ -163,6 +163,33 @@ body{
   border-radius:3px;
   font-size:13px;
 }
+.genre-tag{
+  background:var(--panel-light);
+  color:var(--accent);
+  padding:2px 8px;
+  border-radius:3px;
+  font-size:11px;
+  border:1px solid var(--border);
+}
+.platform-tag{
+  background:var(--card);
+  color:var(--muted);
+  padding:2px 8px;
+  border-radius:3px;
+  font-size:11px;
+  border:1px solid var(--border);
+}
+.game-desc{
+  font-size:12px;
+  color:var(--muted);
+  margin:4px 0;
+  line-height:1.3;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
 .price{
   color:var(--accent);
   font-weight:600;

@@ -1,8 +1,11 @@
 // Fetch real deals via background worker
 let dataSource = 'sample'; // Track data source: 'live', 'cached', or 'sample'
+let cachedGames = null;
+let cacheTimestamp = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
 
-// Realistic fake game data to make the extension look legit
-const FAKE_GAMES = [
+// Realistic fake game data as fallback
+const FALLBACK_GAMES = [
   {
     name: "Counter-Strike 2",
     icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/730/capsule_sm_120.jpg",
@@ -32,88 +35,65 @@ const FAKE_GAMES = [
     is_free: true
   },
   {
-    name: "Lost Ark",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1599340/capsule_sm_120.jpg",
-    appid: 1599340,
-    store_url: "https://store.steampowered.com/app/1599340/",
-    is_free: true
-  },
-  {
     name: "Warframe",
     icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/230410/capsule_sm_120.jpg",
     appid: 230410,
     store_url: "https://store.steampowered.com/app/230410/",
     is_free: true
-  },
-  {
-    name: "Path of Exile",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/238960/capsule_sm_120.jpg",
-    appid: 238960,
-    store_url: "https://store.steampowered.com/app/238960/",
-    is_free: true
-  },
-  {
-    name: "Destiny 2",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1085660/capsule_sm_120.jpg",
-    appid: 1085660,
-    store_url: "https://store.steampowered.com/app/1085660/",
-    is_free: true
-  },
-  {
-    name: "PUBG: BATTLEGROUNDS",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/578080/capsule_sm_120.jpg",
-    appid: 578080,
-    store_url: "https://store.steampowered.com/app/578080/",
-    is_free: true
-  },
-  {
-    name: "War Thunder",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/236390/capsule_sm_120.jpg",
-    appid: 236390,
-    store_url: "https://store.steampowered.com/app/236390/",
-    is_free: true
-  },
-  {
-    name: "Fortnite",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/capsule_sm_120.jpg",
-    appid: null,
-    store_url: "https://www.epicgames.com/fortnite/",
-    is_free: true
-  },
-  {
-    name: "Genshin Impact",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/capsule_sm_120.jpg",
-    appid: null,
-    store_url: "https://genshin.hoyoverse.com/",
-    is_free: true
-  },
-  {
-    name: "Smite",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/386360/capsule_sm_120.jpg",
-    appid: 386360,
-    store_url: "https://store.steampowered.com/app/386360/",
-    is_free: true
-  },
-  {
-    name: "Paladins",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/444090/capsule_sm_120.jpg",
-    appid: 444090,
-    store_url: "https://store.steampowered.com/app/444090/",
-    is_free: true
-  },
-  {
-    name: "Brawlhalla",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/291550/capsule_sm_120.jpg",
-    appid: 291550,
-    store_url: "https://store.steampowered.com/app/291550/",
-    is_free: true
   }
 ];
 
 async function fetchSales() {
-  // Always return fake games to look convincing
-  dataSource = 'live';
-  return FAKE_GAMES;
+  try {
+    // Check if we have valid cached data
+    const now = Date.now();
+    if (cachedGames && (now - cacheTimestamp) < CACHE_DURATION) {
+      console.log('Using cached games data');
+      dataSource = 'cached';
+      return cachedGames;
+    }
+
+    // Fetch from real Free-to-Game API
+    console.log('Fetching fresh games from FreeToGame API...');
+    const response = await fetch('https://www.freetogame.com/api/games', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}`);
+    }
+
+    const games = await response.json();
+    
+    // Transform API response to our format
+    const transformedGames = games.map(game => ({
+      name: game.title,
+      icon: game.thumbnail,
+      appid: game.id,
+      store_url: game.game_url,
+      is_free: true,
+      genre: game.genre,
+      platform: game.platform,
+      publisher: game.publisher,
+      short_description: game.short_description
+    }));
+
+    // Cache the results
+    cachedGames = transformedGames;
+    cacheTimestamp = now;
+    dataSource = 'live';
+    
+    console.log(`Successfully loaded ${transformedGames.length} games from FreeToGame API`);
+    return transformedGames;
+    
+  } catch (error) {
+    console.warn('Failed to fetch from FreeToGame API, using fallback:', error);
+    dataSource = 'sample';
+    return FALLBACK_GAMES;
+  }
 }// helper to open store page in new tab (if store_url exists)
 function openStore(url){
   if(!url) return;
@@ -121,7 +101,8 @@ function openStore(url){
 }
 
 function predictNextSale() {
-  return "🎮 Discover 15+ Free-to-Play Games Available Now!";
+  const count = cachedGames ? cachedGames.length : '500+';
+  return `🎮 Discover ${count} Free-to-Play Games Available Now!`;
 }
 
 function createCard(game) {
@@ -136,14 +117,22 @@ function createCard(game) {
   const info = document.createElement("div");
   info.className = "deal-info";
 
-  const discount = Math.abs(game.discount || 0);
-  const current = (game.current_price || 0).toFixed(2);
-  const lowest = (game.lowest_price || 0).toFixed(2);
+  // Create game info with genre and platform if available
+  let metaHTML = '<span class="free-badge">FREE TO PLAY</span>';
+  
+  if (game.genre) {
+    metaHTML += `<span class="genre-tag">${game.genre}</span>`;
+  }
+  
+  if (game.platform) {
+    metaHTML += `<span class="platform-tag">${game.platform}</span>`;
+  }
 
   info.innerHTML = `
     <strong title="${game.name}">${game.name}</strong>
+    ${game.short_description ? `<p class="game-desc">${game.short_description.substring(0, 80)}${game.short_description.length > 80 ? '...' : ''}</p>` : ''}
     <div class="meta">
-      <span class="free-badge">FREE TO PLAY</span>
+      ${metaHTML}
     </div>
   `;
 
@@ -170,9 +159,6 @@ async function loadDeals() {
   saleList.innerHTML = '<div class="loading">🔍 Searching for free games...</div>';
   nextSaleBox.innerText = predictNextSale();
 
-  // Simulate brief loading to look real
-  await new Promise(resolve => setTimeout(resolve, 800));
-
   let deals = await fetchSales();
 
   // normalize and filter: for free games, show all
@@ -185,7 +171,10 @@ async function loadDeals() {
       lowest_price: 0, // Free
       appid: g.appid,
       store_url: g.store_url,
-      is_free: true
+      is_free: true,
+      genre: g.genre,
+      platform: g.platform,
+      short_description: g.short_description
     }))
     .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically
 
@@ -194,8 +183,11 @@ async function loadDeals() {
   if (deals.length === 0) {
     saleList.innerHTML = '<div class="no-deals">No free games found. Try refreshing!</div>';
   } else {
-    deals.slice(0, 20).forEach(game => saleList.appendChild(createCard(game)));
+    deals.slice(0, 50).forEach(game => saleList.appendChild(createCard(game)));
   }
+
+  // Update the header with actual count
+  nextSaleBox.innerText = `🎮 Discover ${deals.length} Free-to-Play Games Available Now!`;
 
   // update last-updated stamp
   if(stamp) stamp.innerText = `Updated: ${new Date().toLocaleTimeString()}`;
@@ -205,9 +197,9 @@ async function loadDeals() {
   if (badge) {
     badge.className = 'status-badge ' + dataSource;
     const titles = {
-      live: '✓ Live - Showing current free games',
-      cached: 'Cached data (less than 5 min old)',
-      sample: 'Sample data (SteamDB unavailable)'
+      live: '✓ Live - Fresh data from FreeToGame API',
+      cached: '📦 Cached - Data less than 5 min old',
+      sample: '⚠️ Offline - Using fallback data'
     };
     badge.title = titles[dataSource] || 'Status unknown';
   }
@@ -216,12 +208,16 @@ async function loadDeals() {
   document.getElementById("search").oninput = (e) => {
     const value = e.target.value.toLowerCase();
     saleList.innerHTML = "";
-    const filtered = deals.filter(g => g.name.toLowerCase().includes(value));
+    const filtered = deals.filter(g => 
+      g.name.toLowerCase().includes(value) || 
+      (g.genre && g.genre.toLowerCase().includes(value)) ||
+      (g.platform && g.platform.toLowerCase().includes(value))
+    );
 
     if (filtered.length === 0) {
       saleList.innerHTML = '<div class="no-deals">No matches found</div>';
     } else {
-      filtered.slice(0, 20).forEach(game => saleList.appendChild(createCard(game)));
+      filtered.slice(0, 50).forEach(game => saleList.appendChild(createCard(game)));
     }
   };
 }
@@ -280,7 +276,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   refreshBtn.innerHTML = '🔄';
   refreshBtn.title = 'Refresh free games';
   refreshBtn.addEventListener('click', async () => {
-    await chrome.runtime.sendMessage({ type: 'CLEAR_CACHE' });
+    // Clear cache to force fresh fetch
+    cachedGames = null;
+    cacheTimestamp = 0;
     loadDeals();
   });
   document.querySelector('.header-actions').insertBefore(refreshBtn, document.getElementById('settingsBtn'));
