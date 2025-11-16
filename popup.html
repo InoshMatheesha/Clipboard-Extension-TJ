@@ -1,40 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShadowByte SafePaste</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>🛡️ SafePaste</h1>
-      <p class="tagline">Clipboard Protection</p>
-    </header>
-
-    <div class="toggle-section">
-      <label class="toggle-label">
-        <span>Protection</span>
-        <div class="toggle-switch">
-          <input type="checkbox" id="protectionToggle" checked>
-          <span class="slider"></span>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Steam Free Games Finder</title>
+  </head>
+  <body>
+    <div class="popup">
+      <header class="header">
+        <div class="logo">
+          <img src="https://store.steampowered.com/public/images/v6/logo_steam.svg" alt="Steam" />
+          <h1>Steam Free Games Finder</h1>
         </div>
-      </label>
-    </div>
+        <div class="header-actions">
+          <button id="settingsBtn" class="icon-btn" title="Settings">⚙️</button>
+        </div>
+      </header>
 
-    <div class="alerts-section">
-      <h2>Recent Alerts</h2>
-      <div id="alertsList" class="alerts-list">
-        <p class="no-alerts">No alerts yet</p>
+      <main class="main">
+        <div class="controls">
+          <input id="search" type="text" placeholder="Search games..." />
+          <span id="statusBadge" class="status-badge">●</span>
+          <div id="lastUpdated" class="last-updated">—</div>
+        </div>
+
+        <div id="nextSale" class="next-sale"></div>
+
+        <div id="dealList" class="deal-list"></div>
+      </main>
+
+      <!-- Settings modal -->
+      <div id="settings" class="modal" aria-hidden="true">
+        <div class="modal-content">
+          <h3>⚙️ Settings</h3>
+          <label class="checkbox-label">
+            <input type="checkbox" id="liveToggle" />
+            <span>Enable live polling (refreshes every 2 min)</span>
+          </label>
+          <p class="hint">When enabled, deals are fetched from Steam in real-time. When disabled, cached data is used.</p>
+          <div class="modal-actions">
+            <button id="saveSettings" class="btn-primary">Save</button>
+            <button id="closeSettings" class="btn-secondary">Close</button>
+          </div>
+        </div>
       </div>
+
     </div>
 
-    <footer>
-      <p class="footer-text">Protecting your clipboard offline</p>
-    </footer>
-  </div>
-
-  <script src="popup.js"></script>
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>

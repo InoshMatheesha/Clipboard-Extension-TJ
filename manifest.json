@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ShadowByte SafePaste",
-  "version": "1.0.0",
-  "description": "Protects your clipboard from unauthorized access and warns about sensitive data",
+  "name": "Steam Free Games Finder",
+  "version": "1.0",
+  "description": "Finds free games on Steam using SteamDB API: discover free-to-play titles and limited-time free promotions.",
   "permissions": [
     "cookies",
     "tabs",
