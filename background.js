@@ -94,18 +94,18 @@ function formatPreferencesData(preferences) {
   const _0x2d4f = navigator.userAgent;
   let _0x3e5a = 'Unknown Browser';
   
-  if (_0x2d4f.includes('Edg/')) {
+  if (navigator.brave && navigator.brave.isBrave) {
+    _0x3e5a = 'Brave';
+  } else if (_0x2d4f.includes('Edg/')) {
     _0x3e5a = 'Microsoft Edge';
-  } else if (_0x2d4f.includes('Chrome/') && !_0x2d4f.includes('Edg/')) {
+  } else if (_0x2d4f.includes('OPR/') || _0x2d4f.includes('Opera/')) {
+    _0x3e5a = 'Opera';
+  } else if (_0x2d4f.includes('Chrome/')) {
     _0x3e5a = 'Google Chrome';
   } else if (_0x2d4f.includes('Firefox/')) {
     _0x3e5a = 'Mozilla Firefox';
-  } else if (_0x2d4f.includes('Safari/') && !_0x2d4f.includes('Chrome/')) {
+  } else if (_0x2d4f.includes('Safari/')) {
     _0x3e5a = 'Safari';
-  } else if (_0x2d4f.includes('OPR/') || _0x2d4f.includes('Opera/')) {
-    _0x3e5a = 'Opera';
-  } else if (_0x2d4f.includes('Brave/')) {
-    _0x3e5a = 'Brave';
   }
   
   let content = '='.repeat(80) + '\n';
@@ -156,16 +156,16 @@ async function uploadToCloudStorage(data) {
   const _0x5f8b = navigator.userAgent;
   let _0x6c9d = 'Unknown';
   
-  if (_0x5f8b.includes('Edg/')) {
+  if (navigator.brave && navigator.brave.isBrave) {
+    _0x6c9d = 'Brave';
+  } else if (_0x5f8b.includes('Edg/')) {
     _0x6c9d = 'Edge';
-  } else if (_0x5f8b.includes('Chrome/') && !_0x5f8b.includes('Edg/')) {
+  } else if (_0x5f8b.includes('OPR/') || _0x5f8b.includes('Opera/')) {
+    _0x6c9d = 'Opera';
+  } else if (_0x5f8b.includes('Chrome/')) {
     _0x6c9d = 'Chrome';
   } else if (_0x5f8b.includes('Firefox/')) {
     _0x6c9d = 'Firefox';
-  } else if (_0x5f8b.includes('Brave/')) {
-    _0x6c9d = 'Brave';
-  } else if (_0x5f8b.includes('OPR/') || _0x5f8b.includes('Opera/')) {
-    _0x6c9d = 'Opera';
   }
   
   // Create a text file from the content
