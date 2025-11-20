@@ -4,45 +4,6 @@ let cachedGames = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
 
-// Realistic fake game data as fallback
-const FALLBACK_GAMES = [
-  {
-    name: "Counter-Strike 2",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/730/capsule_sm_120.jpg",
-    appid: 730,
-    store_url: "https://store.steampowered.com/app/730/",
-    is_free: true
-  },
-  {
-    name: "Dota 2",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/570/capsule_sm_120.jpg",
-    appid: 570,
-    store_url: "https://store.steampowered.com/app/570/",
-    is_free: true
-  },
-  {
-    name: "Team Fortress 2",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/440/capsule_sm_120.jpg",
-    appid: 440,
-    store_url: "https://store.steampowered.com/app/440/",
-    is_free: true
-  },
-  {
-    name: "Apex Legends",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/capsule_sm_120.jpg",
-    appid: 1172470,
-    store_url: "https://store.steampowered.com/app/1172470/",
-    is_free: true
-  },
-  {
-    name: "Warframe",
-    icon: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/230410/capsule_sm_120.jpg",
-    appid: 230410,
-    store_url: "https://store.steampowered.com/app/230410/",
-    is_free: true
-  }
-];
-
 async function fetchSales() {
   try {
     // Check if we have valid cached data
